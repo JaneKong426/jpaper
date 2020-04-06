@@ -15,13 +15,19 @@ t_test_simple(file, outfile = NULL)
 \item{y}{A numeric vector}
 
 \item{file}{The file path of xlsx}
+
+\item{outfile}{The file path of xlsx for OUTPUTS}
 }
 \description{
 T test and TukeyHSD test
 }
 \examples{
-\dontrun{
+set.seed(1)
+x <- rnorm(100)
+y <- rnorm(100)
 t_test(x, y)
+
+\dontrun{
 t_test_simple("a.xlsx")
 }
 }

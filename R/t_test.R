@@ -21,6 +21,14 @@ length_valid <- function(.) {
 #' @seealso [stats::t.test()], [stats::TukeyHSD()]
 #'
 #' @import data.table
+#'
+#' @examples
+#' set.seed(1)
+#' x <- rnorm(100)
+#' y <- rnorm(100)
+#' t_test(x, y)
+#'
+#' @importFrom stats aov t.test TukeyHSD
 #' @export
 t_test <- function(x, y) {
     # formula <- sprintf("%s~order", varname) %>% as.formula()
@@ -44,10 +52,10 @@ t_test <- function(x, y) {
 }
 
 #' @param file The file path of xlsx
+#' @param outfile The file path of xlsx for OUTPUTS
 #'
 #' @examples
 #' \dontrun{
-#' t_test(x, y)
 #' t_test_simple("a.xlsx")
 #' }
 #' @export
