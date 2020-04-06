@@ -1,0 +1,18 @@
+Package: jpaper
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Dongdong", "Kong", role = c("aut", "cre"), email = "kongdd.sysu@gmail.com"))
+Description: Personal package.
+License: GPL-2 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Depends:
+    R (>= 3.1)
+Imports: data.table, openxlsx, magrittr
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 2.1.0)
+Roxygen: list(markdown = TRUE)
