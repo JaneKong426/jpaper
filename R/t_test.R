@@ -5,7 +5,7 @@ label_sd <- function (x, ...)
     y <- mean(x)
     sd <- sd(x)
 
-    sprintf("%.2f±%.2f", y, sd)
+    sprintf("%.2f\u00b1%.2f", y, sd) # ±
     # c(y = y, ymin = y - sd, ymax = y + sd, sd = sd)
 }
 
