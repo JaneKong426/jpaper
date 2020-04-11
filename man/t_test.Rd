@@ -3,11 +3,14 @@
 \name{t_test}
 \alias{t_test}
 \alias{t_test_simple}
+\alias{t_test_simple2}
 \title{T test and TukeyHSD test}
 \usage{
 t_test(x, y)
 
 t_test_simple(file, outfile = NULL)
+
+t_test_simple2(file1, file2, outfile = NULL)
 }
 \arguments{
 \item{x}{A numeric vector}

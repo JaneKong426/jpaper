@@ -67,3 +67,21 @@ t_test_simple <- function(file, outfile = NULL) {
     if (!is.null(outfile)) write.xlsx(ans, outfile)
     ans
 }
+
+#' @import foreach
+#' @export
+#' @rdname t_test
+t_test_simple2 <- function(file1, file2, outfile = NULL) {
+    d1 <- read.xlsx(file1)
+    d2 <- read.xlsx(file2)
+
+    res <- foreach(x = d1, y = d2) %do% {
+        x <- as.numeric(x)
+        y <- as.numeric(y)
+        ans <- t_test(x, y)
+    }
+    res <- melt_list(res, "variable")
+
+    if (!is.null(outfile)) write.xlsx(res, outfile)
+    ans
+}

@@ -2,7 +2,9 @@
 
 export(t_test)
 export(t_test_simple)
+export(t_test_simple2)
 import(data.table)
+import(foreach)
 importFrom(openxlsx,read.xlsx)
 importFrom(openxlsx,write.xlsx)
 importFrom(stats,TukeyHSD)
