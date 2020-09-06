@@ -10,7 +10,7 @@ t_test(x, y)
 
 t_test_simple(file, outfile = NULL)
 
-t_test_simple2(file1, file2, outfile = NULL)
+t_test_simple2(file, outfile = "result.xlsx")
 }
 \arguments{
 \item{x}{A numeric vector}
@@ -32,6 +32,9 @@ t_test(x, y)
 
 \dontrun{
 t_test_simple("a.xlsx")
+}
+\dontrun{
+t_test_simple2(file)
 }
 }
 \seealso{

@@ -41,6 +41,10 @@ t_test <- function(x, y) {
     # x <- df[order == "first"][[varname]]
     # y <- df[order == "second"][[varname]]
 
+    # if (length(table(x)) == 2 && length(table(y)) == 2) {
+    #     browser()
+    # }
+
     r <- t.test(x, y)
     tval <- r$statistic[[1]]
     pvalue <- r$p.value
@@ -62,6 +66,7 @@ t_test <- function(x, y) {
 #' @importFrom openxlsx read.xlsx write.xlsx
 #' @rdname t_test
 t_test_simple <- function(file, outfile = NULL) {
+
     d <- read.xlsx(file)
     ans <- t_test(d[[1]], d[[2]])
     if (!is.null(outfile)) write.xlsx(ans, outfile)
@@ -71,10 +76,16 @@ t_test_simple <- function(file, outfile = NULL) {
 #' @import foreach
 #' @export
 #' @rdname t_test
-t_test_simple2 <- function(file1, file2, outfile = NULL) {
-    d1 <- read.xlsx(file1)
-    d2 <- read.xlsx(file2)
+#'
+#' @examples
+#' \dontrun{
+#' t_test_simple2(file)
+#' }
+t_test_simple2 <- function(file, outfile = "result.xlsx") {
+    d1 <- read.xlsx(file, 1)
+    d2 <- read.xlsx(file, 2)
 
+    # browser()
     res <- foreach(x = d1, y = d2) %do% {
         x <- as.numeric(x)
         y <- as.numeric(y)
