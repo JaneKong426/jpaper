@@ -81,10 +81,15 @@ t_test_simple <- function(file, outfile = NULL) {
 #' \dontrun{
 #' t_test_simple2(file)
 #' }
-t_test_simple2 <- function(file, outfile = "result.xlsx") {
+t_test2.character <- function(file, outfile = "result.xlsx") {
     d1 <- read.xlsx(file, 1)
     d2 <- read.xlsx(file, 2)
+    t_test2.data.frame(d1, d2, outfile)
+}
 
+t_test2.data.frame <- function(d1, d2, outfile = "result.xlsx") {
+    # d1 <- read.xlsx(file, 1)
+    # d2 <- read.xlsx(file, 2)
     # browser()
     res <- foreach(x = d1, y = d2) %do% {
         x <- as.numeric(x)
@@ -94,5 +99,5 @@ t_test_simple2 <- function(file, outfile = "result.xlsx") {
     res <- melt_list(res, "variable")
 
     if (!is.null(outfile)) write.xlsx(res, outfile)
-    ans
+    res
 }

@@ -5,32 +5,7 @@ df <- read_xlsx(file)
 
 d <- df[, .(days2 = pweek2*7+pday2, days1 = pweek1*7+pday1, mode2, weight1_1, weight2_1, mode1)]
 varnames <- c("days", "weight", "model") %>% set_names(., .)
-# {
-#     d <- list(
-#         second = df[, .(days2 = pweek2+pday2/7, weight2_1, mode2)], 
-#         first = df[, .(days1 = pweek1+pday1/7, weight1_1, mode1)]) %>% 
-#         map( ~ set_names(., varnames)) %>% 
-#         melt_list("order")
-#     d[!(model %in% c("顺产", "剖宫产")), model := "其他"]
-#     d$model %<>% factor(c("顺产", "剖宫产", "其他")) #%>% as.character()
-    
-#     tbl = table(d[, .(order, model)])
-#     N <- 451
-#     tbl_perc = round(tbl*100/451, 1)
-    
-#     # kafang 检验
-#     xsq <- chisq.test(M)
-#     xsq
-# }
 
-# res <- foreach(varname = varnames[1:2], i = icount()) %do% {
-#     check_diff(d, varname)
-# }
-# info <- melt_list(res, "variable")
-# write_list2xlsx(list(info = info), "diff_others.xlsx")
-
-
-## 2. 
 ## 2. previous version ------------------------------------------------------------
 # list(second = d[, lapply(.SD, label_sd), .(mode2), .SDcols = c("days2", "weight1_1")], 
 #     first = d[, lapply(.SD, label_sd), .(mode1), .SDcols = c("days1", "weight2_1")])
@@ -63,14 +38,10 @@ res = foreach(varname = varnames_new, i = icount()) %do% {
 info <- do.call(rbind, res) %>% cbind(variable = varnames_new, .)
 write_list2xlsx(list(info = info), "second-first.xlsx")
 
-
-
-
-
-c("first", "second", "group", "name", "birth", "age2", "delvdate2", "famhis2", 
-  "insulin2", "hypoins2", "gender2_1", "weight2_1", "brth2_1", "out2_1", "ptimes2", 
-  "dtimes2", "pweek2", "pday2", "mode2", "wght_b2", "wght_d2", "height2", "diagn2", 
-  "hist2", "HBA2_d", "OGTT2_0_d", "OGTT2_1_d", "OGTT2_2_d", "CHOL2_d", "TG2_d", 
-  "HDL2_d", "LDL2_d", "TSH", "FT3", "FT4", "GLU2_d", "HBA2_a", 
-  "OGTT2_0_a", "OGTT2_1_a", "OGTT2_2_a", "CHOL2_a", "TG2_a", "HDL2_a", "LDL2_a", 
-  "insu2_0_a", "uglu2_1_a", "uglu2_2_a", "age1", "delvdate1", "gender1_1", "weight1_1", "brth1_1", "out1_1", "insulin1", "hypoins1", "ptimes1", "dtimes1", "pweek1", "pday1", "mode1", "wght_b1", "wght_d1", "height1", "HBA1_d", "OGTT1_0_d", "OGTT1_1_d", "OGTT1_2_d", "OGTT1_3_d", "CHOL1_d", "TG1_d", "HDL1_d", "LDL1_d", "HBA1_a", "OGTT1_0_a", "OGTT1_1_a", "OGTT1_2_a", "CHOL1_a", "TG1_a", "HDL1_a", "LDL1_a", "insu1_0_a", "uglu1_1_a", "uglu1_2_a", "wght_db2", "wght_db1")
+# c("first", "second", "group", "name", "birth", "age2", "delvdate2", "famhis2", 
+#   "insulin2", "hypoins2", "gender2_1", "weight2_1", "brth2_1", "out2_1", "ptimes2", 
+#   "dtimes2", "pweek2", "pday2", "mode2", "wght_b2", "wght_d2", "height2", "diagn2", 
+#   "hist2", "HBA2_d", "OGTT2_0_d", "OGTT2_1_d", "OGTT2_2_d", "CHOL2_d", "TG2_d", 
+#   "HDL2_d", "LDL2_d", "TSH", "FT3", "FT4", "GLU2_d", "HBA2_a", 
+#   "OGTT2_0_a", "OGTT2_1_a", "OGTT2_2_a", "CHOL2_a", "TG2_a", "HDL2_a", "LDL2_a", 
+#   "insu2_0_a", "uglu2_1_a", "uglu2_2_a", "age1", "delvdate1", "gender1_1", "weight1_1", "brth1_1", "out1_1", "insulin1", "hypoins1", "ptimes1", "dtimes1", "pweek1", "pday1", "mode1", "wght_b1", "wght_d1", "height1", "HBA1_d", "OGTT1_0_d", "OGTT1_1_d", "OGTT1_2_d", "OGTT1_3_d", "CHOL1_d", "TG1_d", "HDL1_d", "LDL1_d", "HBA1_a", "OGTT1_0_a", "OGTT1_1_a", "OGTT1_2_a", "CHOL1_a", "TG1_a", "HDL1_a", "LDL1_a", "insu1_0_a", "uglu1_1_a", "uglu1_2_a", "wght_db2", "wght_db1")

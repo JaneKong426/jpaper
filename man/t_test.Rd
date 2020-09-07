@@ -3,14 +3,14 @@
 \name{t_test}
 \alias{t_test}
 \alias{t_test_simple}
-\alias{t_test_simple2}
+\alias{t_test2.character}
 \title{T test and TukeyHSD test}
 \usage{
 t_test(x, y)
 
 t_test_simple(file, outfile = NULL)
 
-t_test_simple2(file, outfile = "result.xlsx")
+t_test2.character(file, outfile = "result.xlsx")
 }
 \arguments{
 \item{x}{A numeric vector}
