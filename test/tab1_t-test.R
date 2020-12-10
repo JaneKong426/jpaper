@@ -1,8 +1,8 @@
-source("main_pkgs.R", encoding = "utf-8")
+source("test/main_pkgs.R", encoding = "utf-8")
 
-file <- "test/2019年11月GDM再发最终分析数据.xlsx"
+# file <- "data-raw/"
 # file <- "data-raw/table1_rawData.xlsx"
-df   <- read_xlsx(file) %>% as.data.table()
+df   <- read_xlsx("data-raw/2019年11月GDM再发最终分析数据.xlsx") %>% as.data.table()
 
 d <- df[, .(days2 = pweek2*7+pday2, days1 = pweek1*7+pday1, mode2, weight1_1, weight2_1, mode1)]
 varnames <- c("days", "weight", "model") %>% set_names(., .)
@@ -35,7 +35,7 @@ df2$age %<>% as.numeric()
 
 d1 = df2[order == "first", -1]
 d2 = df2[order == "second", -1]
-t_test2.data.frame(d1, d2, "table1_result.xlsx")
+t_test2.data.frame(d1, d2, "table1_result2.xlsx")
 
 # res = foreach(varname = varnames_new, i = icount()) %do% {
 #     check_diff(df2, varname)
